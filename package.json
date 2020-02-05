@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "now"
+    "start": "node api/index"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hubbeco/htmler.git"
@@ -20,7 +19,7 @@
   },
   "homepage": "https://github.com/hubbeco/htmler#readme",
   "engines": {
-    "node": "13.x"
+    "node": "12.x"
   },
   "dependencies": {
     "puppeteer": "^2.1.0"

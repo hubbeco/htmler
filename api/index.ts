@@ -1,20 +1,43 @@
 import { NowRequest, NowResponse } from '@now/node'
+import puppeteer from 'puppeteer'
+
+import { jsonParser as p } from './utils'
+import { validator } from './utils'
+// import { crawl } from './spider'
 
 
-export default function(req: NowRequest, res: NowResponse) {
+const url = 'https://www.reddit.com';
 
-    // let who = 'anonymous'
-    //
-    // if (req.body && req.body.who) {
-    //     who = req.body.who
-    // } else if (req.query.who) {
-    //     who = req.query.who
-    // } else if (req.cookies.who) {
-    //     who = req.cookies.who
-    // }
 
-    res.status(200).send(`Hello ${who}!`)
+export default async function(req: NowRequest, res: NowResponse) {
 
-    const { name = 'World' } = req.query
-    res.send(`Hello ${name}!`)
+    if(req.query.url === undefined) {
+        res.status(400)
+        return res.json(p({ error: '"url" parameter is required.' }))
+
+    } else if (!validator.isValidURL(req.query.url)) {
+        res.status(400)
+        return res.json(p({ error: '"url" parameter must be a valid URL.' }))
+    }
+
+    puppeteer
+        .launch()
+        .then(function(browser) {
+            return browser.newPage();
+        })
+        .then(function(page) {
+            return page.goto(url).then(function() {
+                return page.content();
+            });
+        })
+        .then(function(html) {
+            // console.log(html);
+            res.json(p({ url, content: html }))
+        })
+        .catch(function(err) {
+            //handle error
+        });
+
+    // return res.json(p({ url }))
+
 }

@@ -1,10 +1,6 @@
 const puppeteer = require('puppeteer');
 const url = 'https://www.reddit.com';
 
-const spider = (url) => {
-
-    return
-}
 puppeteer
     .launch()
     .then(function(browser) {

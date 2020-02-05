@@ -1,14 +1,18 @@
 import App from './app'
 
 import * as bodyParser from 'body-parser'
+import * as dotenv from 'dotenv'
 import loggerMiddleware from './middleware/logger'
 
 import PostsController from './controllers/posts/posts.controller'
 import HomeController from './controllers/home/home.controller'
 import CrawlController from "./controllers/crawl/crawl.controller";
 
+
+dotenv.config()
+
 const app = new App({
-    port: 5000,
+    port: Number(process.env.SERVER_PORT) || 5000,
     controllers: [
         new HomeController(),
         new PostsController(),

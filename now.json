@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "name": "htmler",
   "scope": "hubbeco",
   "builds": [
     { "src": "api/**/*.ts", "use": "@now/node" }
+  ],
+  "alias": [
+    "htmler.now.sh"
   ]
 }

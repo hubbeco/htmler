@@ -10,16 +10,20 @@
     "type": "git",
     "url": "git+https://github.com/hubbeco/htmler.git"
   },
-  "keywords": [
-    "spider",
-    "scrapping",
-    "crawler",
-    "puppeteer"
-  ],
+  "keywords": [ "spider", "scrapping", "crawler", "puppeteer" ],
   "author": "Hubbe Team",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/hubbeco/htmler/issues"
   },
-  "homepage": "https://github.com/hubbeco/htmler#readme"
+  "homepage": "https://github.com/hubbeco/htmler#readme",
+  "engines": {
+    "node": "13.x"
+  },
+  "dependencies": {
+    "puppeteer": "^2.1.0"
+  },
+  "devDependencies": {
+    "@now/node": "^1.4.0"
+  }
 }

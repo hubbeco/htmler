@@ -4,8 +4,10 @@
   "description": "Get all html content from a valid URL",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "now"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hubbeco/htmler.git"

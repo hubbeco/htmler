@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "nodemon",
     "start": "ts-node dist/server.js",
-    "now-build": "tsc -p .",
     "build": "tsc -p ."
   },
   "author": "",
@@ -20,8 +19,6 @@
     "typescript": "^3.6.3"
   },
   "devDependencies": {
-    "@now/node": "^1.4.1",
-    "@now/node-server": "^0.8.2",
     "@types/express": "^4.17.1",
     "@types/node": "^12.7.8",
     "nodemon": "^2.0.2"

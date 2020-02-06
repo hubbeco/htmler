@@ -2,6 +2,10 @@
 .vscode
 .idea
 
+# Dist/package dir
+dist
+.dist
+
 # Logs
 logs
 *.log
@@ -106,3 +110,5 @@ dist
 
 # TernJS port file
 .tern-port
+
+.now

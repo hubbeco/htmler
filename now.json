@@ -2,9 +2,18 @@
   "version": 2,
   "scope": "hubbeco",
   "builds": [
-    { "src": "api/**/*.ts", "use": "@now/node" }
+    { "src": "src/**/*.ts", "use": "@now/node-server" }
   ],
   "alias": [
     "htmler.now.sh"
-  ]
+  ],
+  "routes": [{
+    "headers": {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
+    },
+    "src": "/.*",
+    "dest": "/dist/server.js"
+  }]
 }

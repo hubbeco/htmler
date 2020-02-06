@@ -2,27 +2,7 @@ import * as express from 'express'
 import { Request, Response } from 'express'
 import IControllerBase from 'interfaces/IControllerBase.interface'
 import { validator as v } from '../../utils'
-import * as puppeteer from 'puppeteer'
-
-
-async function runSpider(url) {
-    try {
-        const browser = await puppeteer.launch({ headless: true })
-        const page = await browser.newPage()
-        await page.goto(url)
-
-        const htmlContent = await page.content()
-        const hrefs = await page.$$eval('a', as => as.map(a => a.href));
-        const outLinks = Array.from(new Set(hrefs))
-
-        await browser.close()
-
-        return { outLinks, htmlContent }
-
-    } catch (err) {
-        console.log(err)
-    }
-}
+import CrawlerService from '../../services/crawler.service'
 
 
 class CrawlController implements IControllerBase {
@@ -48,7 +28,7 @@ class CrawlController implements IControllerBase {
             return res.json(info)
         }
 
-        const result = await runSpider(req.query.url)
+        const result = await CrawlerService.crawl(req.query.url)
 
         return res.json({
             target: req.query.url,
@@ -59,27 +39,3 @@ class CrawlController implements IControllerBase {
 }
 
 export default CrawlController
-
-
-
-// const puppeteer = require('puppeteer');
-// const url = 'https://www.reddit.com';
-//
-// export function crawl(start_url: String) {
-//     return puppeteer
-//         .launch()
-//         .then(function(browser) {
-//             return browser.newPage();
-//         })
-//         .then(function(page) {
-//             return page.goto(url).then(function() {
-//                 return page.content();
-//             });
-//         })
-//         .then(function(html) {
-//             console.log(html);
-//         })
-//         .catch(function(err) {
-//             //handle error
-//         });
-// }
